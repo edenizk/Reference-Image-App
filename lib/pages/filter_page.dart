@@ -14,11 +14,11 @@ class FilterPage extends StatefulWidget {
 class _FilterPageState extends State<FilterPage> {
   // EXAMPLE WITH AZURE SEARCH SERVICE
   //&$filter=gender eq 'female' and clothing eq 'nude' and direction eq 'back'
-  String filterString = "&\$filter=";
+  String _filterString = "&\$filter=";
   Gender currGender = Gender.all;
-  Clothing currClothing;
-  Pose currPose;
-  Direction currDirection;
+  Clothing currClothing = Clothing.all;
+  Pose currPose = Pose.all;
+  Direction currDirection = Direction.all;
   
   _FilterPageState(){
     // currGender = Gender.all;
@@ -30,11 +30,18 @@ class _FilterPageState extends State<FilterPage> {
 
   _setFilterString(){
     setState(() {
-      filterString += currGender == Gender.all ? '' : "gender eq '${currGender.toString().split('.').last}'";
-      filterString += currClothing == Clothing.all ? '' : "clothing eq '${currClothing.toString().split('.').last}'";
-      filterString += currPose == Pose.all ? '' : "pose eq '${currPose.toString().split('.').last}'";
-      filterString += currDirection == Direction.all ? '' : "direction eq '${currDirection.toString().split('.').last}'";
+      _filterString += currGender == Gender.all ? '' : "gender eq '${currGender.toString().split('.').last}' ";
+      _filterString += currClothing == Clothing.all ? '' : "clothing eq '${currClothing.toString().split('.').last}' ";
+      _filterString += currPose == Pose.all ? '' : "pose eq '${currPose.toString().split('.').last}' ";
+      _filterString += currDirection == Direction.all ? '' : "direction eq '${currDirection.toString().split('.').last}' ";
     });
+
+    if(_filterString == "&\$filter=") 
+    {
+      setState(() {
+        _filterString="";
+      });
+    }
   }
 
   @override
@@ -52,11 +59,10 @@ class _FilterPageState extends State<FilterPage> {
             RaisedButton(
               child: Text('Start'),
               onPressed: () {
-                print('test');
                 _setFilterString();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => SlidePage(filterString)),
+                  MaterialPageRoute(builder: (context) => SlidePage(_filterString)),
                 );
               }
             )

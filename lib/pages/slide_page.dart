@@ -35,49 +35,38 @@ class _SlidePageState extends State<SlidePage> {
   // EXAMPLE WITH AZURE SEARCH SERVICE
   //&$filter=gender eq 'female' and clothing eq 'nude' and direction eq 'back'
   // https://ergindenizazureblob.search.windows.net/indexes/refphotos-index/docs?api-version=2019-05-06&search=*&$filter=gender eq 'female' and clothing eq 'nude' and direction eq 'back''
-  final _url =
-      "https://ergindenizazureblob.blob.core.windows.net/test?restype=container&comp=list&include=metadata";
+  String _url =
+      "https://ergindenizazureblob.search.windows.net/indexes/refphotos-index/docs?api-version=2019-05-06&search=*";
 
   _SlidePageState() {
-    fetchRefPhotos();
+
   }
 
   void initState() {
     super.initState();
+    print('filter: ' + widget.filterString);
+    _url += widget.filterString ?? '';
+    fetchRefPhotos();
     _resetTimer();
     _startTimer();
   }
 
-  void fetchRefPhotosJson() async {
+  void fetchRefPhotos() async {
     final response = await http.get(
-      'https://ergindenizazureblob.search.windows.net/indexes/refphotos-index/docs?api-version=2019-05-06&search=*',
+      _url,
       headers: {'api-key': "C14B8AE093BA597288A2905C34013079"},
     );
     if (response.statusCode == 200) {
       Map<String, dynamic> photos = jsonDecode(response.body.toString());
       photos["value"].forEach((photo) => {
-            refPhotostest
+            refPhotos
                 .add(new RefPhotos(fileName: photo['metadata_storage_name'])),
           });
     } else {
       throw Exception(
           'Failed to load response code : ' + response.statusCode.toString());
     }
-  }
 
-  void fetchRefPhotos() async {
-    final response = await http.get(_url);
-    final document = XmlDocument.parse(response.body.toString().substring(3));
-    print(document);
-    if (response.statusCode == 200) {
-      document.findAllElements('Blob').forEach((blob) => {
-            refPhotos.add(
-                new RefPhotos(fileName: blob.findElements('Name').single.text)),
-            print(blob.findElements('TestKey'))
-          });
-    } else {
-      throw Exception('Failed to load album');
-    }
     setIndex();
   }
 
@@ -93,7 +82,7 @@ class _SlidePageState extends State<SlidePage> {
   }
 
   _nextPhoto() {
-    _startTimer();
+    // _startTimer();
     if (indexTree.length != _treeIndex) {
       // print("tree index: "  + _treeIndex.toString() + "\nindex Tree len: " + indexTree.length.toString());
       setState(() {
@@ -139,7 +128,6 @@ class _SlidePageState extends State<SlidePage> {
   }
 
   _playPause() {
-    fetchRefPhotosJson();
     _timer.isActive ? _timer.cancel() : _startTimer();
   }
 

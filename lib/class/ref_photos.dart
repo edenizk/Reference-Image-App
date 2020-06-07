@@ -3,7 +3,7 @@ class RefPhotos {
 
   RefPhotos({this.fileName});
 
-  String getUrl(){
-    return "https://ergindenizazureblob.blob.core.windows.net/test/" + this.fileName;
+  String getUrl({containerName = 'photos'}){
+    return "https://ergindenizazureblob.blob.core.windows.net/$containerName/" + this.fileName;
   }
 }
