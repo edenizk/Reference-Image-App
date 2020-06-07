@@ -19,8 +19,14 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  azblob: ^1.0.3
   credentials_helper: ^1.0.4
+  xml: ^4.2.0
+  http: ^0.12.1
+  loading:
+    git:
+      url: git://github.com/leonzone/loading.git
+      path: loading
+      ref: 8f5a63f
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
