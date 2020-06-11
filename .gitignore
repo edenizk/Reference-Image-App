@@ -117,3 +117,5 @@ doc/api/
 
 #private key
 assets/config.json
+
+lib/helpers/azure_config.dart
