@@ -1,0 +1,4 @@
+
+class AzureConfig {
+  get ConnectionString => "";
+}
