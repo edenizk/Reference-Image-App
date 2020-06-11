@@ -20,5 +20,3 @@ jobs:
       run: pub get
     - name: Flutter CLI
       uses: steebchen/flutter@v1.0.0
-    - name: Flutter Deployment
-      uses: jeanluc243/Flutter-Deployment@0.1
