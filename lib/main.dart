@@ -1,7 +1,13 @@
+import 'dart:convert';
+import 'dart:typed_data';
+
 import 'package:credentials_helper/credentials_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:reference_photo_app/widgets/filter_page.dart';
-import 'package:azblob/azblob.dart';
+import 'package:reference_photo_app/class/ref_photos.dart';
+import 'package:http/http.dart' as http;
+import 'package:reference_photo_app/views/pages/chatPage.dart';
+import 'package:reference_photo_app/views/pages/filter_page.dart';
+import 'package:xml/xml.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,33 +30,30 @@ class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
-
+  var myImage;
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-
-  Credentials credentials = Credentials.fromFile('config.json');
-
-  _MyHomePageState(){
-  
-  }
-
-  void _test () {
-    var storage = AzureStorage.parse(credentials.apiKey);
-
-    // await storage.putBlob('/yourcontainer/yourfile.txt',
-    //   body: 'Hello, world.');
-  }
-
-
+  _MyHomePageState() {}
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.message),
+            onPressed: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChatPage()),
+              )
+            },
+          )
+        ],
       ),
       body: Center(
         child: Column(
@@ -59,7 +62,6 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             FlatButton(
                 color: Colors.transparent,
-
                 child: Container(
                   padding: const EdgeInsets.only(top: 30, bottom: 30),
                   alignment: Alignment.center,
@@ -67,7 +69,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     color: Colors.transparent,
                     border: Border.all(width: 3, color: Colors.black),
                     borderRadius: new BorderRadius.circular(30.0),
-                    ),
+                  ),
                   width: 260,
                   height: 160,
                   child: Text(
