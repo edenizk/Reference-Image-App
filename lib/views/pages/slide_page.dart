@@ -39,16 +39,24 @@ class _SlidePageState extends State<SlidePage> {
       "https://ergindenizazureblob.search.windows.net/indexes/refphotos-index/docs?api-version=2019-05-06&search=*";
 
   _SlidePageState() {
-
   }
 
   void initState() {
     super.initState();
+        print('slidepage const');
+
     print('filter: ' + widget.filterString);
     _url += widget.filterString ?? '';
     fetchRefPhotos();
     _resetTimer();
     _startTimer();
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    _timer.cancel();
+    super.dispose();
   }
 
   void fetchRefPhotos() async {
@@ -67,7 +75,35 @@ class _SlidePageState extends State<SlidePage> {
           'Failed to load response code : ' + response.statusCode.toString());
     }
 
+    if(refPhotos.isEmpty){
+      popupEmpty();
+    }
+
     setIndex();
+  }
+
+  void popupEmpty(){
+    showDialog<String>(
+      context: context,
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: const EdgeInsets.all(16.0),
+            content: Row(
+              children: <Widget>[
+                Text('There are no photos with this filter')
+              ],
+            ),
+            actions: <Widget>[
+              FlatButton(
+                  child: const Text('OK'),
+                  onPressed: () {
+                    Navigator.pop(context);
+                    Navigator.pop(context);
+                  })
+            ],
+          );
+        }
+    );
   }
 
   void setIndex() {

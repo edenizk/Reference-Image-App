@@ -1,8 +1,9 @@
-
+import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:reference_photo_app/helpers/enums.dart';
 import 'package:reference_photo_app/views/pages/slide_page.dart';
+import 'package:reference_photo_app/widgets/slide_filter.dart';
 
 class FilterPage extends StatefulWidget {
   FilterPage({Key key}) : super(key: key);
@@ -19,28 +20,144 @@ class _FilterPageState extends State<FilterPage> {
   Clothing currClothing = Clothing.all;
   Pose currPose = Pose.all;
   Direction currDirection = Direction.all;
-  
-  _FilterPageState(){
-    // currGender = Gender.all;
-    // currClothing = Clothing.all;
-    // currPose = Pose.all;
-    // currDirection = Direction.all;
+
+  _nextValue(var value) {
+    print(value is Clothing);
+    if (value is Clothing) {
+      if (_validateNext(Clothing.values, currClothing.index)) {
+        setState(() {
+          currClothing = Clothing.values[currClothing.index + 1];
+        });
+      } else {
+        setState(() {
+          currClothing = Clothing.values[0];
+        });
+      }
+    } else if (value is Gender) {
+      if (_validateNext(Gender.values, currGender.index)) {
+        setState(() {
+          currGender = Gender.values[currGender.index + 1];
+        });
+      } else {
+        setState(() {
+          currGender = Gender.values[0];
+        });
+      }
+    } else if (value is Pose) {
+      if (_validateNext(Pose.values, currPose.index)) {
+        setState(() {
+          currPose = Pose.values[currPose.index + 1];
+        });
+      } else {
+        setState(() {
+          currPose = Pose.values[0];
+        });
+      }
+    } else if (value is Direction) {
+      if (_validateNext(Direction.values, currDirection.index)) {
+        setState(() {
+          currDirection = Direction.values[currDirection.index + 1];
+        });
+      } else {
+        setState(() {
+          currDirection = Direction.values[0];
+        });
+      }
+    }
+
+    print(value.toString());
+  }
+
+  _validateNext(List list, int index) {
+    print('len: ' + list.length.toString() + ' index: ' + index.toString());
+    if (list.length - 1 >= index + 1) {
+      return true;
+    }
+
+    return false;
+  }
+
+  _prevValue(value) {
+     if (value is Clothing) {
+      if (_validatePrev(currClothing.index)) {
+        setState(() {
+          currClothing = Clothing.values[currClothing.index - 1];
+        });
+      } else {
+        setState(() {
+          currClothing = Clothing.values[Clothing.values.length - 1];
+        });
+      }
+    } else if (value is Gender) {
+      if (_validatePrev(currGender.index)) {
+        setState(() {
+          currGender = Gender.values[currGender.index - 1];
+        });
+      } else {
+        setState(() {
+          currGender = Gender.values[Gender.values.length - 1];
+        });
+      }
+    } else if (value is Pose) {
+      if (_validatePrev(currPose.index)) {
+        setState(() {
+          currPose = Pose.values[currPose.index - 1];
+        });
+      } else {
+        setState(() {
+          currPose = Pose.values[Pose.values.length - 1];
+        });
+      }
+    } else if (value is Direction) {
+      if (_validatePrev(currDirection.index)) {
+        setState(() {
+          currDirection = Direction.values[currDirection.index - 1];
+        });
+      } else {
+        setState(() {
+          currDirection = Direction.values[Direction.values.length - 1];
+        });
+      }
+    }
+
+  }
+
+  _validatePrev(int index) {
+    if (index - 1 >= 0) {
+      return true;
+    }
+
+    return false;
+  }
+
+  _FilterPageState() {
     print("current gender: " + currGender.toString().split('.').last);
   }
 
-  _setFilterString(){
+  _setFilterString() {
     setState(() {
-      _filterString += currGender == Gender.all ? '' : "gender eq '${currGender.toString().split('.').last}' ";
-      _filterString += currClothing == Clothing.all ? '' : "clothing eq '${currClothing.toString().split('.').last}' ";
-      _filterString += currPose == Pose.all ? '' : "pose eq '${currPose.toString().split('.').last}' ";
-      _filterString += currDirection == Direction.all ? '' : "direction eq '${currDirection.toString().split('.').last}' ";
+      _filterString = "&\$filter=";
+      _filterString += currGender == Gender.all
+          ? ''
+          : "gender eq '${currGender.toString().split('.').last}' and ";
+      _filterString += currClothing == Clothing.all
+          ? ''
+          : "clothing eq '${currClothing.toString().split('.').last}' and ";
+      _filterString += currPose == Pose.all
+          ? ''
+          : "pose eq '${currPose.toString().split('.').last}' and ";
+      _filterString += currDirection == Direction.all
+          ? ''
+          : "direction eq '${currDirection.toString().split('.').last}' and ";
     });
 
-    if(_filterString == "&\$filter=") 
-    {
+    if (_filterString == "&\$filter=") {
       setState(() {
-        _filterString="";
+        _filterString = "";
       });
+    }
+    if(_filterString != ""){
+      _filterString = _filterString.substring(0, _filterString.length - 5);
     }
   }
 
@@ -48,29 +165,29 @@ class _FilterPageState extends State<FilterPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-
         title: Text('Filter'),
       ),
       body: Center(
-
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: <Widget>[
-
+            SlideFilter(currGender, _prevValue, _nextValue),
+            SlideFilter(currClothing, _prevValue, _nextValue),
+            SlideFilter(currPose, _prevValue, _nextValue),
+            SlideFilter(currDirection, _prevValue, _nextValue),
             RaisedButton(
-              child: Text('Start'),
-              onPressed: () {
-                _setFilterString();
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => SlidePage(_filterString)),
-                );
-              }
-            )
+                child: Text('Start'),
+                onPressed: () {
+                  _setFilterString();
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => SlidePage(_filterString)),
+                  );
+                })
           ],
-         
         ),
       ),
- 
     );
   }
 }
