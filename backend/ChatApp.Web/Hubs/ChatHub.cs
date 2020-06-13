@@ -12,7 +12,7 @@ namespace ChatApp.Web.Hubs
         public async Task SendMessage(object name, object message)
         {
 
-            UserChatMessage userChatMessage = new UserChatMessage(name.ToString(), message.ToString());
+            //UserChatMessage userChatMessage = new UserChatMessage(name.ToString(), message.ToString());
             await Clients.All.SendAsync(Consts.RECIEVE_MESSAGE, new object[] { name, message });
         }
     }

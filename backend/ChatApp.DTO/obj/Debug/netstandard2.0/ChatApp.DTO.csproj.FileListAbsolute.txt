@@ -1,0 +1,18 @@
+D:\6thSemester\Cloud\chatapp2\ChatApp.DTO\bin\Debug\netstandard2.0\ChatApp.DTO.deps.json
+D:\6thSemester\Cloud\chatapp2\ChatApp.DTO\bin\Debug\netstandard2.0\ChatApp.DTO.dll
+D:\6thSemester\Cloud\chatapp2\ChatApp.DTO\bin\Debug\netstandard2.0\ChatApp.DTO.pdb
+D:\6thSemester\Cloud\chatapp2\ChatApp.DTO\obj\Debug\netstandard2.0\ChatApp.DTO.csproj.CoreCompileInputs.cache
+D:\6thSemester\Cloud\chatapp2\ChatApp.DTO\obj\Debug\netstandard2.0\ChatApp.DTO.AssemblyInfoInputs.cache
+D:\6thSemester\Cloud\chatapp2\ChatApp.DTO\obj\Debug\netstandard2.0\ChatApp.DTO.AssemblyInfo.cs
+D:\6thSemester\Cloud\chatapp2\ChatApp.DTO\obj\Debug\netstandard2.0\ChatApp.DTO.dll
+D:\6thSemester\Cloud\chatapp2\ChatApp.DTO\obj\Debug\netstandard2.0\ChatApp.DTO.pdb
+D:\6thSemester\Cloud\chatapp2\ChatApp.DTO\obj\Debug\netstandard2.0\ChatApp.DTO.csprojAssemblyReference.cache
+D:\6thSemester\Azure Final\backend\ChatApp.DTO\bin\Debug\netstandard2.0\ChatApp.DTO.deps.json
+D:\6thSemester\Azure Final\backend\ChatApp.DTO\bin\Debug\netstandard2.0\ChatApp.DTO.dll
+D:\6thSemester\Azure Final\backend\ChatApp.DTO\bin\Debug\netstandard2.0\ChatApp.DTO.pdb
+D:\6thSemester\Azure Final\backend\ChatApp.DTO\obj\Debug\netstandard2.0\ChatApp.DTO.csprojAssemblyReference.cache
+D:\6thSemester\Azure Final\backend\ChatApp.DTO\obj\Debug\netstandard2.0\ChatApp.DTO.csproj.CoreCompileInputs.cache
+D:\6thSemester\Azure Final\backend\ChatApp.DTO\obj\Debug\netstandard2.0\ChatApp.DTO.AssemblyInfoInputs.cache
+D:\6thSemester\Azure Final\backend\ChatApp.DTO\obj\Debug\netstandard2.0\ChatApp.DTO.AssemblyInfo.cs
+D:\6thSemester\Azure Final\backend\ChatApp.DTO\obj\Debug\netstandard2.0\ChatApp.DTO.dll
+D:\6thSemester\Azure Final\backend\ChatApp.DTO\obj\Debug\netstandard2.0\ChatApp.DTO.pdb

@@ -7,10 +7,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.Web", "ChatApp.Web.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ChatApp.DTO", "..\ChatApp.DTO\ChatApp.DTO.csproj", "{0DA10859-C331-48E4-9628-B591BDD018EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Mobile.Android", "..\ChatApp.Mobile\ChatApp.Mobile.Android\ChatApp.Mobile.Android.csproj", "{596DB67C-B190-4941-932F-C73C844CAF3D}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChatApp.Mobile", "..\ChatApp.Mobile\ChatApp.Mobile\ChatApp.Mobile.csproj", "{4310060B-6162-41A4-9B39-1464839CFE95}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,16 +21,6 @@ Global
 		{0DA10859-C331-48E4-9628-B591BDD018EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DA10859-C331-48E4-9628-B591BDD018EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0DA10859-C331-48E4-9628-B591BDD018EE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{596DB67C-B190-4941-932F-C73C844CAF3D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{596DB67C-B190-4941-932F-C73C844CAF3D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{596DB67C-B190-4941-932F-C73C844CAF3D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{596DB67C-B190-4941-932F-C73C844CAF3D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{596DB67C-B190-4941-932F-C73C844CAF3D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{596DB67C-B190-4941-932F-C73C844CAF3D}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{4310060B-6162-41A4-9B39-1464839CFE95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4310060B-6162-41A4-9B39-1464839CFE95}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4310060B-6162-41A4-9B39-1464839CFE95}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4310060B-6162-41A4-9B39-1464839CFE95}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
