@@ -31,7 +31,6 @@ dependencies:
   dio: ^3.0.9
   azblob: ^1.0.3
   image_picker: ^0.6.7+1
-  multi_image_picker: ^4.6.5
   loading:
     git:
       url: git://github.com/leonzone/loading.git

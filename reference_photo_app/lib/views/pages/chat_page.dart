@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:reference_photo_app/utils/consts.dart';
 import 'package:reference_photo_app/views/pages/chat_page_view_model.dart';
-import 'package:reference_photo_app/views/pages/messageChatView.dart';
+import 'package:reference_photo_app/views/pages/message_chat_view.dart';
 import 'package:reference_photo_app/views/pages/message_controller.dart';
 
 class ChatPage extends StatefulWidget {

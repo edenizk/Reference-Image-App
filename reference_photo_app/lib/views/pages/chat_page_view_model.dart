@@ -49,7 +49,7 @@ class ChatPageViewModel extends ViewModel {
     print('open chat connection');
     print(_hubConnection);
     if (_hubConnection == null) {
-          print('this is not null');
+          print('empty connection');
 
       _hubConnection = HubConnectionBuilder().withUrl(_serverUrl).build();
       _hubConnection.onclose((error) => connectionIsOpen = false);
@@ -79,9 +79,7 @@ class ChatPageViewModel extends ViewModel {
 }
 
 class ChatPageViewModelProvider extends ViewModelProvider<ChatPageViewModel> {
-  // Properties
 
-  // Methods
   ChatPageViewModelProvider({Key key, viewModel: ChatPageViewModel, WidgetBuilder childBuilder}) : super(key: key, viewModel: viewModel, childBuilder: childBuilder);
 
   static ChatPageViewModel of(BuildContext context) {
